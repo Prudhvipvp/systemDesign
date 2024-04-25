@@ -1,0 +1,56 @@
+
+
+- *Code is liability, keep it short and simple*
+- *Clean code doesn’t contain duplication.*
+- *Refactoring makes it easier to add new features. It’s much easier to make changes in clean code.*
+- *Refactor when you have to repeat the same thing a third time*
+
+> ==**Refactoring Java Methods - For all these methods, also consider the performance impact they can have -**==
+
+- Delegation means just using a different class A's object as a field in your class B and calling that object A's method in your class B's method . So you are delegating your class B to that of the class A
+
+1.  <ins>**Extract** **Method**</ins> - An ideal method should have less than 10 lines. As a rule of thumb, if you feel the need to comment on something inside a method, you should take this code and put it in a new method. Have a descriptive name for a method and put a code fragment that can be grouped together in a separate method.
+    
+2.  **Replace Method with a new class** - If a method is too long and you can't separate it due to tangled masses of local variables that are hard to isolate from each other, create a new class called PriceComputer(). This class should contain 5 private variables and a method named compute(). The constructor should take the main class's object and initialise the 5 variables as done in the original method. In the original method, replace the code with `new PriceComputer(this).compute()`.
+    
+3.  **QueryAndModifier** - Do you have a method that returns a value but also changes something inside an object? In such cases, split the method into two separate methods. One should return the value and the other one should modify the object.
+    
+4.  **Inline Method** - If a method is a single liner and it's not used in multiple classes, it's better to delete the method and use that single line directly. This cleans up the code and reduces the number of methods.
+    
+5.  **Extract Variable** - If you have an expression that's hard to understand and you are using such big expressions in your if conditions, it's better to put the expression value into a variable with a descriptive name and use that variable in the if condition. In some cases, instead of a variable, you can write separate methods itself, for the condition expressions
+    
+6.  **Descriptive variable names** - Avoid using variable names like temp, k, x, etc. Also, avoid reusing the same variable name and reassigning it to a new value (except in cases of loops) just to reduce the number of variables. This can create issues and bugs in long codes that may go unnoticed.
+    
+7.  **Method parameter assignments** - Never assign a value to a parameter inside a method i.e. dont change the method parameter's value, clone the parameter and use it for such cases -  create a new variable (e.g., result = parameter) and use the new variable for assignments and returns. This promotes cleaner code, as each element of the program should be responsible for only one thing (either a parameter or a return value). Although parameters are passed by value and it doesn't matter, using a new variable instead of the parameter itself is a cleaner and more readable approach.
+    
+8.  **Move Method and move Field** - If a method is used more in another class than in its own class, it's better to move the method to the new class. If that method uses variables of the class, move those variables as well. However, if those variables are used by some other methods, then move those other methods as well. Similarly, for the field also. Put a field in the same place as the methods that use it. Always better to have fields as private
+    
+9.  **Extract Class**\- Follow the SRP principle. If a class is handling more than one responsibility, even a small one, it's better to have a separate class for that. Create a separate class with its own methods and fields. Use the "Move Method" and "Move Field" strategies to decide which methods and fields should be moved to the new class. Rename the old and new classes with relevant names. However, be cautious not to overdo it to the extent that a class has almost no responsibility. In such cases, it's better not to refactor.
+    
+10. **Hide Delegate**\- The less the client code knows about the details of relationships between objects, the easier it is to make changes to your program. If class A contains an object of class B and you have a line of code like `C c = B.getC();` and `c.compute();`, it's better to have a method `compute()` in class B itself. This way, the main class A will be agnostic of class C. However, be cautious not to overdo it as it can create multiple levels of delegation.
+    
+11. **POJO Classes with Wrappers (SRP Usage)**\- When creating data classes (POJOs), it's better to have relevant fields in a separate class instead of having many fields in a single class. This approach is cleaner and follows the SRP principle. Identify which fields can change and put them in a separate class. The main class will have all the permanent fields. Whenever something changes, only the classes used inside the main class should be updated, while the main class itself remains unchanged.
+    
+12. **Change Value to Reference and Vice Versa**\- In class A, if you have another class B as a field, it's better to directly assign `this.B = B;` in the constructor instead of creating a new instance like `this.B = new B("hello");`. Doing so ensures that class A uses a reference to B instead of a separate object. However, if the field B frequently changes, then it's better to use a separate object in class A.
+    
+13. **Use Arrays for Appropriate Purposes**\- Arrays are an excellent tool for storing data and collections of a single type. However, avoid using arrays for cases where the first object is a username and the second is, for example, an address. This can lead to errors in the future due to human mistakes. Instead, create a separate POJO class for such cases instead of using an array.
+    
+14. **Encapsulate Collection**\- Encapsulation is the ability to conceal fields in a class by making them private. A collection field (such as an array, set, or map) should not have a direct setter (`set(array a)`), but should have `add(element e)` and `remove(element e)` methods to modify individual elements of the collection. The getter `Array get()` should return an unmodifiable collection. This protocol properly encapsulates a collection, reducing the degree of association between the owner class and the client code. It's similar to making a field private and exposing getter and setter methods. By encapsulating a collection, we make each object in the collection private. This approach provides centralized visibility of when our field is used, allows for debug points, and facilitates tracking of the field's value usage by threads. Additionally, a subclass can have its own getter and setter according to its own context. Encapsulation also allows setters to validate the new value and catch errors earlier.
+    
+15. **Avoid Nested Loops**\- Instead of using nested if-else loops, try to write simple, plain if-else conditions.
+    
+16. ***Tell, Don’t-Ask* principle:** Instead of asking an object about its state and then performing actions based on this, it’s much easier to simply tell the object what it needs to do and let it decide for itself how to do that. This means in cases where we use complicated switch cases, say based on switch(birdType): case pigeon -> return pigeonSpeed()...  Here we are asking the method what birdType in switch and then accordingly returning the value. Instead, have separate subclasses for each birdType and directly in the main class you can call the getSpeed() (which will be implemented by each of the subclass), so in this way we are directly telling what to do (get me the speed) and not asking.
+    
+17. **Null object class instead of null checks** - To prevent multiple repeated null checks on objects in the code, whenever we want to return null from a method, create a new class called Null class which will have some default null implementations etc. And all the clients can use the code cleanly without any null checks.
+    
+18. **Send whole object in method args** \- In cases where you have an object x and you are sending the fields of this obj to a method like fun(x.getName(), x.getAge(),x...), it's better to send the whole x to fun(x) - as it will not create issues when a new param is added in the future. Also, no issues of mis ordering the parameters. Also, if a parameter in a method is local to it and can be calculated in that method also, then no need to calculate it in the client class and passing it in the parameter, it will just increase the parameter list and pain. Also, if you have a long list of parameters and that list is used multiple times, it's best to create a new POJO class with that params list, it will reduce code duplication also and cleaner code. As a rule of thumb, a method should have atmost 4-5 parameters.
+    
+19. \*\*Make each method and field as private, don't have Setters for fields as much as possible - \*\*It's always a good practice for encapsulation to have private methods and fields. The main use is, whenever we change the method, we only need to worry about that class, and not about outer classes if they will break because it's private anyways.
+    
+20. **Use Static Factory Methods instead of constructors** \- Constructor names are restricted and their return types are restricted, a static method in the class like create() - can have constructor logic. In general, when a constructor does much more than just field initialisation, then it's better to have a factory method like create() to do such a task. Also, factory methods can return an already existing field also, unlike the constructor which creates a new object in the heap every time. Also, by definition, a constructor is meant to initialise the fields in a class, if we want anything more, do it in a factory method.
+    
+21. **Move a method/field in parent class thats used in only 1 subclass to that subclass only**
+    
+22. \*\*Replace Inheritance with Delegation - \*\*If you are just creating a subclass for using a single method of parent class and also in cases where it doesn't logically fit in to be child of the parent class but just to avoid code duplication you create the child class. In either case, just create the new class and have a field of the parent class's object in this new class and just have the methods -> isEmpty() { return parentObj.isEmpty();}. In this way, we are delegating the methods in our new class to that of the super class and not maintaining any inheritance also. This is good as it avoids a new child, also the client cant mistakenly call a parent's method which it isn't supposed to call.
+    
+23. \*\*Replace Delegation with Inheritance - \*\*In the same logic as above, if your class is using the delegated class's all methods and also fits as a child of it. Then remove delegation and just make it a parent class. It reduces lot of code also.

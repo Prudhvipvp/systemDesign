@@ -1,5 +1,3 @@
-
-
 HLD Probs-
 
 For the designs where we use object storages, its better that the service returns just the metadata to the client, like the image/video path only. And the client then loads that image via CDNs via the object storage
