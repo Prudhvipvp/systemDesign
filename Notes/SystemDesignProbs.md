@@ -135,6 +135,58 @@ Websockets -
 
 So, user A sends to LB and to chat Service it comes, msg is stored and acked and from sessions we get chat ServerId where userB websocket is connected to and sessions can re route that request to that server and it will send msg to userB.
 
+### Using Idempotency Key to Prevent Double Payment
+
+They should process a request only if it wasn't processed earlier.
+
+This means they must track requests processed by the server.
+
+So they create a unique string (<ins>UUID</ins>) to use as the idempotency key.
+
+And send it with each request’s HTTP header.
+
+Also they generate a new UUID whenever the request payload changes.
+
+Imagine the **idempotency key** as a fingerprint to find whether a request has already been processed.
+
+[![Using Idempotent Keys to Prevent Double Payments](../_resources/idem1)
+
+&nbsp;
+
+They store the idempotency keys with an in-memory database on the server side.
+
+And cache the server response after a request gets processed successfully.
+
+So the in-memory database gets queried to check whether a request has been processed.
+
+They process a request only if it's new and then store its idempotency key in the database.
+
+Otherwise, the cached response gets returned. This means the request was processed earlier.
+
+Also they roll back a transaction using the ACID database when a server error occurs.
+
+Besides they remove the idempotency keys from the in-memory database after 24 hours.
+
+It helps to reduce storage costs and gives enough time to retry failed requests.
+
+Put another way, an idempotency key could be reused after that period.
+
+### 2. Retrying Failed Requests
+
+Although it’s safe to retry using an idempotency key, there’s a risk of server overload with many requests.
+
+[![Exponential Backoff With Jitter While Retrying Requests for Reliability](../_resources/idem2)
+
+Exponential Backoff With Jitter While Retrying Requests for Reliability
+
+So they use the <ins>exponential backoff algorithm</ins>.
+
+That means the client adds an extra delay to retry after each failed request.
+
+Besides a failed server could experience a <ins>thundering herd problem</ins> when many clients try to reconnect at once.
+
+So they use jitter to add randomness to the client’s waiting time before a retry.
+
 1.  ## <span style="color: #ffffff;"><span><span><span><span><span>TicketMaster -</span></span></span></span></span></span>
     
 
