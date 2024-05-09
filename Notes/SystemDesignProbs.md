@@ -149,7 +149,7 @@ Also they generate a new UUID whenever the request payload changes.
 
 Imagine the **idempotency key** as a fingerprint to find whether a request has already been processed.
 
-[![Using Idempotent Keys to Prevent Double Payments](../_resources/idem1)
+[![Using Idempotent Keys to Prevent Double Payments](../_resources/idem1.png)
 
 &nbsp;
 
@@ -175,7 +175,7 @@ Put another way, an idempotency key could be reused after that period.
 
 Although it’s safe to retry using an idempotency key, there’s a risk of server overload with many requests.
 
-[![Exponential Backoff With Jitter While Retrying Requests for Reliability](../_resources/idem2)
+[![Exponential Backoff With Jitter While Retrying Requests for Reliability](../_resources/idem2.png)
 
 Exponential Backoff With Jitter While Retrying Requests for Reliability
 
