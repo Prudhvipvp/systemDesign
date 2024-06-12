@@ -91,7 +91,7 @@ ROUTINES -
     
 5.  So to make the main go routine wait, we have 'WaitGroups' those can be thought of as just counters. So before calling go dbCall() - you do waitGrp.add(1) (its incrementing the counter) and inside the dbCall() method at the end you do - waitGroup.done() (its decrementing the counter). Now in your main, after all the concurrent calls are done. you can waitgrp.wait() -> which basically waits till the counter = 0
     
-6.  ![Screenshot 2024-06-02 at 2.30.53 AM.png](../_resources/Screenshot%202024-06-02%20at%202.30.53 AM.png)
+6.  ![Screenshot 2024-06-02 at 2.30.53 AM.png](../_resources/GI.png)
     
 
 PYTHON - 
