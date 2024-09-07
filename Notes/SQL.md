@@ -40,4 +40,7 @@ When a write request comes, the database does two things synchronously:
 1. The process of periodically flushing the dirty pages from the shared memory pool to the disk is done using the “fsync” command.
 2. Since we cannot keep writing infinitely to the WAL log files to maintain the records, whenever the dirty pages from the memory pool are persisted into the disk,the logs in the WAL are purged since we no longer need them. This process of purging the WAL records is called checkpointing.
 
+### **Why WAL is a reliable technique?**
+    Suppose, a database crashed in the middle of updating pages in the memory pool but we know that those changes were committed to the WAL files. When the database comes up, it will try to keep itself up to date by comparing the WAL logs. Since the Write Ahead log will be ahead of time compared to the database, the database will sync all the commands from the WAL and after processing all the transactions successfully, then only the database allows further reads and writes. Since the database is redoing these changes using the WAL logs, that’s why WAL logs are also known as Redo logs.
+
 https://vivekbansal.substack.com/p/database-internals-write-ahead-logging
