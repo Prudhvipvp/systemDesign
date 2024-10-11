@@ -1,3 +1,8 @@
+https://vivekbansal.substack.com/p/sharding-vs-partitioning?utm_source=post-email-title&publication_id=2112239&post_id=147581642&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+Sharding vs Partioning - 
+Sharding - is basically hosting your dataset across multiple machines(it doesn't matter if a machine has the whole data set and the other machine has its replica OR there is subset of data per machine -  both are called sharding) - Its basically horizontal scaling.
+Partioning - Its the slicing of a dataset into subsets, primarily because while read the scan range becomes small. It can be row based parititon or column based partioning.
+
 HLD Probs-
 
 For the designs where we use object storages, its better that the service returns just the metadata to the client, like the image/video path only. And the client then loads that image via CDNs via the object storage
