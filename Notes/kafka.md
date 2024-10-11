@@ -1,3 +1,5 @@
+https://blog.bytebytego.com/p/the-trillion-message-kafka-setup?utm_source=post-email-title&publication_id=817132&post_id=149639785&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+
 1.  Each partition is allocated to each broker. For scalability, there should be multiple partitions assigned to multiple brokers (all per topic). A thumb rule is 10Gb per partition. A broker will definitely will have multiple partitions, just that it wont have the same partition's leader and replica
     
 2.  [drive](https://drive.google.com/drive/folders/1DWZA1b3nEwz7pSW0WrBL24SAOl8fO93U)
