@@ -10,6 +10,10 @@ Dual write -
 https://newsletter.systemdesignclassroom.com/p/i-have-seen-this-mistake-in-production?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true
 
 
+Nginx reactive requests handling - 
+
+https://newsletter.systemdesign.one/p/how-does-nginx-work?utm_source=post-email-title&publication_id=1511845&post_id=151915359&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+
 HLD Probs-
 
 For the designs where we use object storages, its better that the service returns just the metadata to the client, like the image/video path only. And the client then loads that image via CDNs via the object storage
