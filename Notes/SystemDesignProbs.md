@@ -5,6 +5,11 @@ Partioning - Its the slicing of a dataset into subsets, primarily because while 
 
 load balancing - https://newsletter.systemdesign.one/p/facebook-load-balancer?utm_source=post-email-title&publication_id=1511845&post_id=149723912&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
 
+Tinder geosharding - 
+
+https://blog.bytebytego.com/p/how-tinder-recommends-to-75-million?utm_source=post-email-title&publication_id=817132&post_id=152593620&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+
+
 Dual write - 
 
 https://newsletter.systemdesignclassroom.com/p/i-have-seen-this-mistake-in-production?utm_source=multiple-personal-recommendations-email&utm_medium=email&triedRedirect=true
