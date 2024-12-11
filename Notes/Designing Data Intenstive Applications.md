@@ -324,7 +324,7 @@ When its used?
 
 1.  In leader election - One way of electing a leader is to use a lock: every node that starts up tries to acquire the lock, and the one that succeeds becomes the leader \[14\]. No matter how this lock is implemented, it must be linearizable: all nodes must agree which node owns the lock; otherwise it is useless.
 2.  InUniqueness constraints are common in databases: for example, a username or email address must uniquely identify one user, and in a file storage service there cannot be two files with the same path and filename
-3.  As in below example, of ot pccurs that webserver sent the photoId to queue and queue consumption is quite fast that the image resizer tried to fetch the photoID even before its replicated. So in such cases, linearisability is a requirement. This problem arises because there are two different communication channels between the web server and the resizer:
+3.  As in below example, Inconsistency occurs if webserver sent the photoId to queue and queue consumption is quite fast that the image resizer tried to fetch the photoID even before its replicated. So in such cases, linearisability is a requirement. This problem arises because there are two different communication channels between the web server and the resizer:
 4.  ![Screenshot 2024-05-18 at 5.12.46 PM.png](../_resources/Screenshot%202024-05-18%20at%205.12.46%20PM.png)
 
 **CAP THEOREM -**
@@ -338,16 +338,7 @@ When its used?
 - **PROOF -**
     
     - - If your application requires linearizability, and some replicas are disconnected from the other replicas due to a network problem, then some replicas cannot process requests while they are disconnected: they must either wait until the network problem is fixed, or return an error because its a linearisable system and cant return a stale value that it contains (It should do the replication from the other network of replicas before returning result but due to n/w error that doesnt happen) (either way, they become unavailable).
-            
-            ``````
-            `````
-            ````
-            ```
-            - If your application does not require linearizability, then it can be written in a way that each replica can process requests independently, even if it is disconnected from other replicas (e.g., multi-leader replication). In this case, the application can remain available in the face of a network problem, but its behavior is not linearizable.
-            ```
-            ````
-            `````
-            ``````
+      - If your application does not require linearizability, then it can be written in a way that each replica can process requests independently, even if it is disconnected from other replicas (e.g., multi-leader replication). In this case, the application can remain available in the face of a network problem, but its behavior is not linearizable.
             
 - If you want linearizability, the response time of read and write requests is at least proportional to the uncertainty of delays in the network. In a network with highly variable delays, like most computer networks , the response time of linearizable reads and writes is inevitably going to be high. A faster algorithm for linearizability does not exist, but weaker consistency models can be much faster, so this trade-off is important for latency-sensitive systems.
     
