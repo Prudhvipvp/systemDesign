@@ -19,6 +19,18 @@ Nginx reactive requests handling -
 
 https://newsletter.systemdesign.one/p/how-does-nginx-work?utm_source=post-email-title&publication_id=1511845&post_id=151915359&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
 
+While designing database schema its better to go by the below approach - 
+
+Query-first design
+1. What are the requirements?
+2. What are the queries my application needs to run to meet these requirements?
+3. What tables are my queries querying?
+4. How can these tables be uniquely identified and partitioned?
+5. What data needs to go in these tables?
+6. Have I designed a schema that matches the requirements?
+7. Are there areas I can improve?
+
+   
 HLD Probs-
 
 For the designs where we use object storages, its better that the service returns just the metadata to the client, like the image/video path only. And the client then loads that image via CDNs via the object storage
