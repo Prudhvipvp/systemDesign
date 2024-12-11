@@ -281,15 +281,21 @@ So, clearly stored procedures are much better in such cases.
     
 - How are phone calls so reliable unlike internet connections?
     
-    - A circuit in a telephone network is very different from a TCP connection: a circuit is a fixed amount of reserved bandwidth which nobody else can use while the circuit is established, whereas the packets of a TCP connection opportunistically use whatever network bandwidth is available.
+    - A circuit in a telephone network(Landlines or old mobiles) is very different from a TCP connection: a circuit is a fixed amount of reserved bandwidth which nobody else can use while the circuit is established, whereas the packets of a TCP connection opportunistically use whatever network bandwidth is available.
         
-    - Saya telephone connection wire has carry 10K simulataneous calls. And for phone calls this is static, i.e. even you are the single user making phone call . Or there are 10K people calling each other. Each of them gets the same bandwidth which is pre defined. Due to this fixed bandwidth allocation, the time taken for communication is reliable.
+    - Say a telephone connection wire can carry 10K simulataneous calls. And for phone calls this is static, i.e. even you are the single user making phone call . Or there are 10K people calling each other. Each of them gets the same bandwidth which is pre defined. Due to this fixed bandwidth allocation, the time taken for communication is reliable.
         
     - Unlike in internet, for better hardware resource utilisation , we dont do fixed bandwidth allocation and it is dynamic
         
     - The internet shares network bandwidth dynamically. Senders push and jostle with each other to get their packets over the wire as quickly as possible, and the network switches decide which packet to send(Like a OS scheduling) (i.e., the bandwidth allocation) from one moment to the next. This approach has the downside of queueing, but the advantage is that it maximizes utilization of the wire. The wire has a fixed cost, so if you utilize it better, each byte you send over the wire is cheaper.
         
     - So, Variable delays in networks are not a law of nature, but simply the result of a cost/ benefit trade-off.
+ 
+    - In today's 4G and 5G, they aren't fixed bandwidth rather they are also voice over Internet(VOLTE) and so not as reliable as landlines.
+ 
+    - What do we mean bandwidth is fixed -
+
+        - Bandwidth is amount of data thats transferred per second - Bytes per second. Now all over the globe, we have transimission cables, optic cables, satellites etc. All of them combined, at a point in time, they can only hold a fixed amount of bytes(Becoz the transmission resources are limited). Thats why we say world's bandwidth is limited. Now when a circuit fixes a reserved bandwidth for calls (generally 64KBPS) - so this much space is left in the transmission cables for them irrespective of its used or not. While for internet, it optimally allocates like OS - so not so reliable.
         
 - Another major unseen issue is "TIME CLOCKS"
     
