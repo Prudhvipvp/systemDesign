@@ -9,6 +9,9 @@ Tinder geosharding -
 
 https://blog.bytebytego.com/p/how-tinder-recommends-to-75-million?utm_source=post-email-title&publication_id=817132&post_id=152593620&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
 
+Blue sky/Twitter design - 
+https://newsletter.systemdesign.one/p/how-does-bluesky-work?utm_source=post-email-title&publication_id=1511845&post_id=153583246&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+
 
 Dual write - 
 
