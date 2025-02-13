@@ -22,6 +22,11 @@ Nginx reactive requests handling -
 
 https://newsletter.systemdesign.one/p/how-does-nginx-work?utm_source=post-email-title&publication_id=1511845&post_id=151915359&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
 
+Distributed counter - 
+
+https://blog.bytebytego.com/p/how-netflix-built-a-distributed-counter?utm_source=post-email-title&publication_id=817132&post_id=156698123&utm_campaign=email-post-title&isFreemail=true&r=1zlsga&triedRedirect=true&utm_medium=email
+
+
 While designing database schema its better to go by the below approach - 
 
 Query-first design
